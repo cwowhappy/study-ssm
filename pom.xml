@@ -12,9 +12,11 @@
         <project.target.jdk.version>1.8</project.target.jdk.version>
 
         <dependency.version.junit>4.12</dependency.version.junit>
+        <dependency.version.mail-api>1.5.6</dependency.version.mail-api>
         <dependency.version.servlet-api>3.1.0</dependency.version.servlet-api>
         <dependency.version.persistence-api>1.0.2</dependency.version.persistence-api>
 
+        <dependency.version.freemarker>2.3.26-incubating</dependency.version.freemarker>
         <dependency.version.guava>21.0</dependency.version.guava>
         <dependency.version.ehcache2>2.10.3</dependency.version.ehcache2>
         <dependency.version.ehcache3>3.2.0</dependency.version.ehcache3>
@@ -52,6 +54,10 @@
             <artifactId>persistence-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
@@ -67,6 +73,11 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <!-- 模板引擎依赖库 -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
         </dependency>
         <!-- 序列化依赖库 -->
         <dependency>
@@ -160,6 +171,11 @@
                 <artifactId>persistence-api</artifactId>
                 <version>${dependency.version.persistence-api}</version>
             </dependency>
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>javax.mail-api</artifactId>
+                <version>${dependency.version.mail-api}</version>
+            </dependency>
             <!-- Google的Java扩展基础库 -->
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -181,6 +197,12 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
                 <version>${dependency.version.slf4j}</version>
+            </dependency>
+            <!-- 模板引擎依赖库 -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${dependency.version.freemarker}</version>
             </dependency>
             <!-- 序列化依赖库 -->
             <dependency>
