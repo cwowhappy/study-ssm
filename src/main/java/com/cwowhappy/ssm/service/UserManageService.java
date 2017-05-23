@@ -8,5 +8,6 @@ import java.util.List;
  * Created by cwowhappy on 17-5-17.
  */
 public interface UserManageService {
+    void save(UserModel userModel);
     List<UserModel> findAllUsers();
 }

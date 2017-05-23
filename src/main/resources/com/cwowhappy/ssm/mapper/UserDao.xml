@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cwowhappy.ssm.dao.UserDao">
+    <insert id="save">
+        INSERT INTO `tb_user` (`code`, `name`, `birthday`, `gender`)
+        VALUE (#{code}, #{name}, #{birthday}, #{gender})
+    </insert>
     <select id="findAllUsers" resultType="user">
-        SELECT `id`, `code`, `name`, `birthday`
+        SELECT `id`, `code`, `name`, `birthday`, `gender`, `create_time`
           FROM tb_user
     </select>
 </mapper>

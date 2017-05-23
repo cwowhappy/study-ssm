@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `tb_user` (
+  `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+  `code` VARCHAR(40) NOT NULL UNIQUE ,
+  `name` VARCHAR(120) NOT NULL ,
+  `gender` VARCHAR(10) NOT NULL,
+  `birthday` DATE NOT NULL,
+  `create_time` TIMESTAMP DEFAULT NOW()
+);

@@ -18,6 +18,14 @@ import java.util.stream.Collectors;
 @Service("userManageService")
 public class UserManageServiceImpl implements UserManageService {
     private UserDao userDao;
+
+    @Override
+    public void save(UserModel userModel) {
+        if(null != userModel) {
+            userDao.save(new UserEntity(userModel));
+        }
+    }
+
     @Override
     public List<UserModel> findAllUsers() {
         List<UserModel> userModelList = null;
@@ -27,6 +35,8 @@ public class UserManageServiceImpl implements UserManageService {
         }
         return userModelList;
     }
+
+
 
     @Autowired
     public void setUserDao(UserDao userDao) {

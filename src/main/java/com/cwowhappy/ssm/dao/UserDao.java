@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface UserDao {
     List<UserEntity> findAllUsers();
+
+    void save(UserEntity userEntity);
 }

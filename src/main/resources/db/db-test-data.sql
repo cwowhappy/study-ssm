@@ -1,0 +1,1 @@
+INSERT INTO `tb_user` (`code`, `name`, `birthday`) VALUE ('D07823', '李晓毅', '1988-06-11');
