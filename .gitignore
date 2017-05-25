@@ -1,4 +1,8 @@
 *.iml
 .idea/
 
+<<<<<<< HEAD
+=======
+log/
+>>>>>>> 284346890fc82afc2bc051e6bd06980579bb8b68
 target/

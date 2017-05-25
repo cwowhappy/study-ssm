@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,19 @@ import java.util.stream.Collectors;
 @Service("userManageService")
 public class UserManageServiceImpl implements UserManageService {
     private UserDao userDao;
+
+    @Override
+    public void save(UserModel userModel) {
+        if(null != userModel) {
+            userDao.save(new UserEntity(userModel));
+        }
+    }
+
+    @Override
+    public void delete(String userCode) {
+        userDao.logicDeleteByCode(userCode, LocalDateTime.now());
+    }
+
     @Override
     public List<UserModel> findAllUsers() {
         List<UserModel> userModelList = null;
@@ -27,6 +41,8 @@ public class UserManageServiceImpl implements UserManageService {
         }
         return userModelList;
     }
+
+
 
     @Autowired
     public void setUserDao(UserDao userDao) {
