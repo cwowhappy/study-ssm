@@ -24,7 +24,7 @@
         <dependency.version.slf4j>1.7.25</dependency.version.slf4j>
         <dependency.version.jackson>2.8.8</dependency.version.jackson>
         <dependency.version.h2database>1.4.193</dependency.version.h2database>
-        <dependency.version.mysql-connector>6.0.3</dependency.version.mysql-connector>
+        <dependency.version.mysql-connector>5.1.42</dependency.version.mysql-connector>
         <dependency.version.druid>1.0.26</dependency.version.druid>
         <dependency.version.spring>4.3.5.RELEASE</dependency.version.spring>
         <dependency.version.mybatis>3.4.1</dependency.version.mybatis>
