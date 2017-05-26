@@ -22,6 +22,8 @@ public class UserEntity {
     private Gender gender;
     private LocalDate birthday;
     private LocalDateTime createTime;
+    private LocalDateTime updateTime;
+    private LocalDateTime deleteTime;
 
     public UserEntity() {}
 
@@ -78,5 +80,21 @@ public class UserEntity {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public LocalDateTime getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(LocalDateTime deleteTime) {
+        this.deleteTime = deleteTime;
     }
 }

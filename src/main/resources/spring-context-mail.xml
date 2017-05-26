@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 配置mail -->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="protocol" value="${mail.protocol}" />
+        <property name="host" value="${mail.host}" />
+        <property name="defaultEncoding" value="${mail.encoding}" />
+        <property name="username" value="${mail.account.username}" />
+        <property name="password" value="${mail.account.password}" />
+    </bean>
+</beans>

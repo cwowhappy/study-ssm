@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author cwowhappy
@@ -17,6 +18,7 @@ public class UserModel {
     private String name;
     private Gender gender;
     private LocalDate birthday;
+    private LocalDateTime deleteTime;
 
     public UserModel() {}
 
@@ -25,6 +27,7 @@ public class UserModel {
         this.setName(userEntity.getName());
         this.setGender(userEntity.getGender());
         this.setBirthday(userEntity.getBirthday());
+        this.setDeleteTime(userEntity.getDeleteTime());
     }
 
     public String getCode() {
@@ -57,5 +60,13 @@ public class UserModel {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public LocalDateTime getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(LocalDateTime deleteTime) {
+        this.deleteTime = deleteTime;
     }
 }

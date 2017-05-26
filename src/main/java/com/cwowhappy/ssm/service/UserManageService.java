@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface UserManageService {
     void save(UserModel userModel);
+    void delete(String userCode);
     List<UserModel> findAllUsers();
 }

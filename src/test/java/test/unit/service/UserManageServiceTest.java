@@ -12,15 +12,24 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by cwowhappy on 2017/5/18.
  */
-@Transactional
+//@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-context.xml", "classpath:spring-context-dao.xml"})
+@ContextConfiguration(
+        locations = {"classpath:spring-context.xml",
+                "classpath:spring-context-dao.xml",
+                "classpath:spring-context-mail.xml",
+                "classpath:spring-context-template.xml"})
 public class UserManageServiceTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserManageServiceTest.class);
     private UserManageService userManageService;
@@ -34,11 +43,19 @@ public class UserManageServiceTest {
         userModel.setBirthday(LocalDate.of(1988, 6, 11));
 
         userManageService.save(userModel);
+        userManageService.delete("D07823");
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestampNow = Timestamp.valueOf(now);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
+        LOGGER.info("当前时间:{} == {}({}), 当前时区:{}", now, dateFormat.format(timestampNow), timestampNow.getTime(),TimeZone.getDefault());
 
         List<UserModel> userModels = userManageService.findAllUsers();
         if(null != userModels) {
-            userModels.forEach(user -> LOGGER.info("<{}, {}, {}, {}>", user.getCode(), user.getName(), user.getGender(), user.getBirthday()));
+            userModels.forEach(user -> LOGGER.info("<{}, {}, {}, {}, {}>",
+                    user.getCode(), user.getName(), user.getGender(),
+                    user.getBirthday(), user.getDeleteTime()));
         }
+
     }
 
     @Autowired

@@ -5,8 +5,13 @@
         INSERT INTO `tb_user` (`code`, `name`, `birthday`, `gender`)
         VALUE (#{code}, #{name}, #{birthday}, #{gender})
     </insert>
+
+    <update id="logicDeleteByCode">
+        UPDATE `tb_user` SET `delete_time` = #{deleteTime} WHERE `code` = #{code}
+    </update>
+
     <select id="findAllUsers" resultType="user">
-        SELECT `id`, `code`, `name`, `birthday`, `gender`, `create_time`
+        SELECT `id`, `code`, `name`, `birthday`, `gender`, `create_time`, `update_time`, `delete_time`
           FROM tb_user
     </select>
 </mapper>
