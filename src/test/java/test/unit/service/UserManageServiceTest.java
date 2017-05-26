@@ -23,7 +23,7 @@ import java.util.TimeZone;
 /**
  * Created by cwowhappy on 2017/5/18.
  */
-//@Transactional
+@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
         locations = {"classpath:spring-context.xml",
@@ -36,18 +36,21 @@ public class UserManageServiceTest {
 
     @Test
     public void test() {
-        UserModel userModel = new UserModel();
+        UserModel userModel;
+        userModel= new UserModel();
         userModel.setCode("D07823");
         userModel.setName("李晓毅");
         userModel.setGender(Gender.MALE);
         userModel.setBirthday(LocalDate.of(1988, 6, 11));
-
         userManageService.save(userModel);
         userManageService.delete("D07823");
-        LocalDateTime now = LocalDateTime.now();
-        Timestamp timestampNow = Timestamp.valueOf(now);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
-        LOGGER.info("当前时间:{} == {}({}), 当前时区:{}", now, dateFormat.format(timestampNow), timestampNow.getTime(),TimeZone.getDefault());
+
+        userModel= new UserModel();
+        userModel.setCode("D07824");
+        userModel.setName("李晓毅");
+        userModel.setGender(Gender.MALE);
+        userModel.setBirthday(LocalDate.of(1988, 6, 11));
+        userManageService.save(userModel);
 
         List<UserModel> userModels = userManageService.findAllUsers();
         if(null != userModels) {

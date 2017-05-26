@@ -1,5 +1,7 @@
 package com.cwowhappy.ssm.dao;
 
+import com.cwowhappy.ssm.common.mybatis.mapper.common.base.insert.InsertSelectiveMapper;
+import com.cwowhappy.ssm.common.mybatis.mapper.common.base.select.SelectAllMapper;
 import com.cwowhappy.ssm.domain.UserEntity;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,18 +12,12 @@ import java.util.List;
  * @author cwowhappy
  * 2017-05-16 Tuesday
  */
-public interface UserDao {
+public interface UserDao extends InsertSelectiveMapper<UserEntity>, SelectAllMapper<UserEntity> {
     /**
      * 查询获取所有的用户信息
      * @return 用户信息列表
      */
     List<UserEntity> findAllUsers();
-
-    /**
-     * 保存新的用户信息
-     * @param userEntity 用户信息
-     */
-    void save(UserEntity userEntity);
 
     /**
      * 根据code逻辑删除记录

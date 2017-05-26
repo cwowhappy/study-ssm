@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cwowhappy.ssm.dao.UserDao">
-    <insert id="save">
-        INSERT INTO `tb_user` (`code`, `name`, `birthday`, `gender`)
-        VALUE (#{code}, #{name}, #{birthday}, #{gender})
-    </insert>
 
     <update id="logicDeleteByCode">
         UPDATE `tb_user` SET `delete_time` = #{deleteTime} WHERE `code` = #{code}

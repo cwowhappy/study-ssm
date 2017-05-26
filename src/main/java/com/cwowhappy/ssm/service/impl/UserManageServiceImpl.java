@@ -4,6 +4,8 @@ import com.cwowhappy.ssm.dao.UserDao;
 import com.cwowhappy.ssm.domain.UserEntity;
 import com.cwowhappy.ssm.model.UserModel;
 import com.cwowhappy.ssm.service.UserManageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +20,13 @@ import java.util.stream.Collectors;
 @Transactional
 @Service("userManageService")
 public class UserManageServiceImpl implements UserManageService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserManageServiceImpl.class);
     private UserDao userDao;
 
     @Override
     public void save(UserModel userModel) {
         if(null != userModel) {
-            userDao.save(new UserEntity(userModel));
+            userDao.insertSelective(new UserEntity(userModel));
         }
     }
 
@@ -35,7 +38,7 @@ public class UserManageServiceImpl implements UserManageService {
     @Override
     public List<UserModel> findAllUsers() {
         List<UserModel> userModelList = null;
-        List<UserEntity> userEntityList = userDao.findAllUsers();
+        List<UserEntity> userEntityList = userDao.selectAll();
         if(null != userEntityList) {
             userModelList = userEntityList.stream().map(UserModel::new).collect(Collectors.toList());
         }

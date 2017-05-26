@@ -1,11 +1,13 @@
 package com.cwowhappy.ssm.domain;
 
 import com.cwowhappy.ssm.common.enums.Gender;
+import com.cwowhappy.ssm.common.mybatis.mapper.annotation.ColumnType;
 import com.cwowhappy.ssm.model.UserModel;
 import org.apache.ibatis.type.Alias;
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.LocalDateTimeTypeHandler;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +18,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "tb_user")
 public class UserEntity {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String code;
     private String name;
     private Gender gender;
@@ -34,11 +38,11 @@ public class UserEntity {
         this.setBirthday(userModel.getBirthday());
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

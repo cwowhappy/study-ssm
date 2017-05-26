@@ -33,9 +33,20 @@
         </property>
     </bean>
 
+    <!--
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.cwowhappy.ssm.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+       -->
+    <bean id="mapperScannerConfigurer" class="com.cwowhappy.ssm.common.mybatis.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.cwowhappy.ssm.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="properties">
+            <props>
+                <prop key="mappers">com.cwowhappy.ssm.common.mybatis.mapper.common.Mapper</prop>
+            </props>
+        </property>
     </bean>
 
     <!-- 事务管理配置 -->
