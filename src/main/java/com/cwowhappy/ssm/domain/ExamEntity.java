@@ -1,9 +1,10 @@
 package com.cwowhappy.ssm.domain;
 
+import com.cwowhappy.ssm.model.ExamModel;
 import org.apache.ibatis.type.Alias;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
@@ -13,6 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "tb_exam")
 public class ExamEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String code;
     private String subject;
@@ -21,6 +24,12 @@ public class ExamEntity {
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
     private LocalDateTime deleteTime;
+
+    public ExamEntity() {}
+
+    public ExamEntity(@NotNull ExamModel examModel) {
+
+    }
 
     public long getId() {
         return id;

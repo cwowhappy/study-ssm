@@ -46,7 +46,7 @@ public class UserManageServiceTest {
         userManageService.delete("D07823");
 
         userModel= new UserModel();
-        userModel.setCode("D07824");
+        userModel.setCode("D07823");
         userModel.setName("李晓毅");
         userModel.setGender(Gender.MALE);
         userModel.setBirthday(LocalDate.of(1988, 6, 11));
