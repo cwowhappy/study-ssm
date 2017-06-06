@@ -1,11 +1,10 @@
 package com.cwowhappy.ssm.domain;
 
 import com.cwowhappy.ssm.common.enums.Gender;
-import com.cwowhappy.ssm.common.mybatis.mapper.annotation.ColumnType;
 import com.cwowhappy.ssm.model.UserModel;
-import org.apache.ibatis.type.Alias;
-import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.LocalDateTimeTypeHandler;
+import com.cwowhappy.ssm.type.EnumIntValueTypeHandler;
+import org.apache.ibatis.annotations.TypeDiscriminator;
+import org.apache.ibatis.type.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

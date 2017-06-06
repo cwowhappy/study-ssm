@@ -1,6 +1,7 @@
 package com.cwowhappy.ssm.respbody;
 
 import com.alibaba.druid.support.spring.stat.annotation.Stat;
+import com.cwowhappy.ssm.common.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -49,5 +50,6 @@ public class RootRespBody<T> {
         }
 
         private int value;
+
     }
 }

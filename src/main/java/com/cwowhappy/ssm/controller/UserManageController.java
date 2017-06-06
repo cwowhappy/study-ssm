@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 @RequestMapping(path = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class UserManageController {
+public class UserManageController extends BaseManageController {
     private UserManageService userManageService;
 
     @RequestMapping(path = "/list")
@@ -40,6 +40,11 @@ public class UserManageController {
         respBody.setStatus(RootRespBody.Status.SUCCESS);
         respBody.setMessage("处理成功");
         return respBody;
+    }
+
+    @RequestMapping(path = "/test")
+    public RootRespBody<EmptyRespBody> test() throws Exception {
+        throw new Exception("");
     }
 
     @Autowired

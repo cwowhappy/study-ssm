@@ -19,4 +19,15 @@ public class BaseManageController {
 
         return respBody;
     }
+
+    @ExceptionHandler(Exception.class)
+    public RootRespBody<EmptyRespBody> handleException(Exception exception) {
+        RootRespBody<EmptyRespBody> respBody = new RootRespBody<>();
+
+        respBody.setStatus(RootRespBody.Status.EXCEPTION);
+        respBody.setMessage(exception.getMessage());
+
+
+        return respBody;
+    }
 }

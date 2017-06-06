@@ -26,6 +26,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:com/cwowhappy/ssm/mapper/*.xml"/>
         <property name="typeAliasesPackage" value="com.cwowhappy.ssm.domain"/>
+        <!--<property name="typeHandlersPackage" value="com.cwowhappy.ssm.type" /> -->
         <property name="configuration">
             <bean class="org.apache.ibatis.session.Configuration">
                 <property name="mapUnderscoreToCamelCase" value="true"/>
