@@ -1,6 +1,7 @@
 package com.cwowhappy.ssm.common.enums;
 
 import com.cwowhappy.ssm.type.EnumValue;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Objects;
 
@@ -14,6 +15,8 @@ public enum Gender implements EnumValue<Integer> {
         this.value = value;
     }
     private int value;
+
+    @JsonValue
     public Integer getValue() {
         return value;
     }

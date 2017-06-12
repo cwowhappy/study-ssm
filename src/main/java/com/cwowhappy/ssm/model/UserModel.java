@@ -4,6 +4,8 @@ import com.cwowhappy.ssm.common.enums.Gender;
 import com.cwowhappy.ssm.domain.UserEntity;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -14,8 +16,11 @@ import java.time.LocalDateTime;
  * 2017-05-16 Tuesday
  */
 public class UserModel {
+    @NotEmpty(message = "{user.code.null}")
     private String code;
+    @NotEmpty
     private String name;
+    @NotNull
     private Gender gender;
     private LocalDate birthday;
     private LocalDateTime deleteTime;
@@ -50,6 +55,7 @@ public class UserModel {
         return birthday;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
