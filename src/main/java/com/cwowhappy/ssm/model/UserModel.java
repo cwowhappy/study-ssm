@@ -2,8 +2,7 @@ package com.cwowhappy.ssm.model;
 
 import com.cwowhappy.ssm.common.enums.Gender;
 import com.cwowhappy.ssm.domain.UserEntity;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,6 +21,7 @@ public class UserModel {
     private String name;
     @NotNull
     private Gender gender;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     private LocalDateTime deleteTime;
 

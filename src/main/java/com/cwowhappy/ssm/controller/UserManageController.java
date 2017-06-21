@@ -3,12 +3,17 @@ package com.cwowhappy.ssm.controller;
 import com.cwowhappy.ssm.common.enums.Gender;
 import com.cwowhappy.ssm.model.UserModel;
 import com.cwowhappy.ssm.propertyeditor.GenderPropertyEditor;
+import com.cwowhappy.ssm.query.QueryUserFilter;
+import com.cwowhappy.ssm.query.page.PageQueryParam;
+import com.cwowhappy.ssm.query.page.PageQueryResult;
 import com.cwowhappy.ssm.respbody.EmptyRespBody;
 import com.cwowhappy.ssm.respbody.RootRespBody;
 import com.cwowhappy.ssm.respbody.ValidErrorRespBody;
 import com.cwowhappy.ssm.service.UserManageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
@@ -49,11 +54,30 @@ public class UserManageController extends BaseManageController {
         return respBody;
     }
 
-    @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public RootRespBody<EmptyRespBody> addUser(@Valid UserModel userModel) throws JsonProcessingException {
+    @RequestMapping(path = "/list/page")
+    public RootRespBody<PageQueryResult<UserModel>> findAllUsersInPage(@Valid @RequestBody PageQueryParam<QueryUserFilter> pageQueryParam) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println(objectMapper.writeValueAsString(pageQueryParam));
+        return null;
+    }
+
+    @RequestMapping(path = "/addInJsonWay", method = RequestMethod.POST)
+    public RootRespBody<EmptyRespBody> addUserInJsonWay(@Valid @RequestBody UserModel userModel) throws JsonProcessingException {
         //userManageService.save(userModel);
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         System.out.println(objectMapper.writeValueAsString(userModel));
+        RootRespBody<EmptyRespBody> respBody = new RootRespBody<>();
+        respBody.setStatus(RootRespBody.Status.SUCCESS);
+        respBody.setMessage("处理成功");
+        return respBody;
+    }
+
+
+    @RequestMapping(path = "/delete", method = RequestMethod.POST)
+    public RootRespBody<EmptyRespBody> batchDeleteUser(@NotEmpty @RequestParam("userCode") List<String> userCodes) {
+        userCodes.forEach(System.out::println);
+
         RootRespBody<EmptyRespBody> respBody = new RootRespBody<>();
         respBody.setStatus(RootRespBody.Status.SUCCESS);
         respBody.setMessage("处理成功");
@@ -62,7 +86,6 @@ public class UserManageController extends BaseManageController {
 
     @ExceptionHandler(BindException.class)
     public RootRespBody<ValidErrorRespBody> handleBindException(BindException exception) {
-        messageSource.getMessage("user.code.null", null, Locale.getDefault());
         RootRespBody<ValidErrorRespBody> respBody = new RootRespBody<>();
         respBody.setStatus(RootRespBody.Status.EXCEPTION);
         respBody.setMessage("校验失败");
