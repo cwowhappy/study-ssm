@@ -5,7 +5,6 @@
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd">
-    <import resource="classpath:spring-context-*.xml"/>
     <context:property-placeholder location="classpath:config/*.properties"/>
     <!-- Service -->
     <context:component-scan base-package="com.cwowhappy.ssm.service" use-default-filters="false">
@@ -16,4 +15,6 @@
     <context:component-scan base-package="com.cwowhappy.ssm.util" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
     </context:component-scan>
+
+    <import resource="classpath:spring-context-*.xml"/>
 </beans>

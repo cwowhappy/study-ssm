@@ -2,7 +2,9 @@ package com.cwowhappy.ssm.model;
 
 import com.cwowhappy.ssm.common.enums.Gender;
 import com.cwowhappy.ssm.domain.UserEntity;
+import com.cwowhappy.ssm.json.GenderDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -64,6 +66,7 @@ public class UserModel {
         return gender;
     }
 
+    @JsonDeserialize(using = GenderDeserializer.class)
     public void setGender(Gender gender) {
         this.gender = gender;
     }

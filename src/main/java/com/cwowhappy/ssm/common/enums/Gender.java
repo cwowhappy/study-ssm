@@ -9,7 +9,7 @@ import java.util.Objects;
  * Created by cwowhappy on 2017/5/18.
  */
 public enum Gender implements EnumValue<Integer> {
-    FEMALE(0), MALE(1) ;
+    FEMALE(10), MALE(11) ;
 
     Gender(int value) {
         this.value = value;

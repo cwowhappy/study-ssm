@@ -2,6 +2,7 @@ package com.cwowhappy.ssm.controller;
 
 import com.cwowhappy.ssm.common.enums.Gender;
 import com.cwowhappy.ssm.model.UserModel;
+import com.cwowhappy.ssm.propertyeditor.EnumIntValuePropertyEditor;
 import com.cwowhappy.ssm.propertyeditor.GenderPropertyEditor;
 import com.cwowhappy.ssm.query.QueryUserFilter;
 import com.cwowhappy.ssm.query.page.PageQueryParam;
@@ -42,7 +43,7 @@ public class UserManageController extends BaseManageController {
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-        dataBinder.registerCustomEditor(Gender.class, new GenderPropertyEditor());
+        dataBinder.registerCustomEditor(Gender.class, new EnumIntValuePropertyEditor<>(Gender.class));
     }
 
     @RequestMapping(path = "/list")
@@ -59,6 +60,18 @@ public class UserManageController extends BaseManageController {
         ObjectMapper objectMapper = new ObjectMapper();
         System.out.println(objectMapper.writeValueAsString(pageQueryParam));
         return null;
+    }
+
+    @RequestMapping(path = "/add", method = RequestMethod.POST)
+    public RootRespBody<EmptyRespBody> addUser(UserModel userModel) throws JsonProcessingException {
+        //userManageService.save(userModel);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        System.out.println(objectMapper.writeValueAsString(userModel));
+        RootRespBody<EmptyRespBody> respBody = new RootRespBody<>();
+        respBody.setStatus(RootRespBody.Status.SUCCESS);
+        respBody.setMessage("处理成功");
+        return respBody;
     }
 
     @RequestMapping(path = "/addInJsonWay", method = RequestMethod.POST)

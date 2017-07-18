@@ -59,7 +59,7 @@ public class UserManageControllerTest {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("code", "D07823");
         params.add("name", "李晓毅");
-        params.add("gender", "1");
+        params.add("gender", "11");
         params.add("birthday", "1988-06-11");
 
         RequestBuilder requestBuilder;
