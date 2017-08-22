@@ -19,16 +19,37 @@
 
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
-        <property name="validationMessageSource" ref="messageSource"/>
+        <property name="validationMessageSource" ref="validMessageSource"/>
     </bean>
-
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    <bean id="validMessageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="useCodeAsDefaultMessage" value="false"/>
         <property name="basenames">
             <list>
-                <value>messages.ValidationMessages</value>
+                <value>i18n.valid-message</value>
             </list>
         </property>
     </bean>
+
+    <bean name="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="i18n.tips-message" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+    <bean name="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="locale" />
+    </bean>
+    <bean name="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="locale" />
+    </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <ref bean="localeChangeInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.cwowhappy.ssm.interceptor.ValidLocaleChangeInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
