@@ -49,7 +49,7 @@ public class I18nSampleControllerTest {
 
         RequestBuilder requestBuilder;
         requestBuilder = MockMvcRequestBuilders.post("/i18n/sample.json")
-                .cookie(new Cookie("locale", "en"))
+                .cookie(new Cookie("locale", "zh_CN"))
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .accept(MediaType.APPLICATION_JSON_UTF8);
         mockMvc.perform(requestBuilder).andDo(MockMvcResultHandlers.print());
